@@ -38,26 +38,37 @@
 
 int main(void) {
 	setbuf(stdout, NULL);
-	int opcionMenu, kilometros, validacionDeRetorno,kilometrosForzados,maximoNumeroDeReintento,flagCalculos;
-	float bitcoin,precioDeAerolineas, precioDeLatam, diferenciaDePrecios,precioUnitario, descuento ,
+	int opcionMenu, kilometros,kilometrosForzados,maximoNumeroDeReintento,flagCalculos;
+	float bitcoin,precioDeAerolineas, precioDeLatam,precioUnitario, descuento ,
 	interes,ingresoAerolineas,ingresoLatam,precioDebitoAerolineas,precioDebitoLatam,precioCreditoAerolineas
 	,precioCreditoLatam,precioConBitCoinAerolineas,precioConBitCoinLatam, diferenciaPrecio,
 	precioAerolineaForzado,precioLatamForzado,precioUnitarioAerolineas,precioUnitarioLatam;
 
-	flagCalculos = 0;
-	precioAerolineaForzado= 162965;
-	precioLatamForzado = 159339;
-	maximoNumeroDeReintento = 3;
+	opcionMenu = 0;
 	kilometros = 0;
 	kilometrosForzados = 7090;
+	maximoNumeroDeReintento = 3;
+	flagCalculos = 0;
+
+	bitcoin = 4606954.55;
 	precioDeAerolineas= 0;
 	precioDeLatam = 0;
-	bitcoin = 4606954.55;
+	precioUnitario = 0;
 	descuento = 0.1;
 	interes = 0.25;
 	ingresoAerolineas = 0;
 	ingresoLatam = 0;
-	opcionMenu = 0;
+	precioDebitoAerolineas = 0;
+	precioDebitoLatam = 0;
+	precioCreditoAerolineas = 0;
+	precioCreditoLatam = 0;
+	precioConBitCoinAerolineas = 0;
+	precioConBitCoinLatam = 0;
+	diferenciaPrecio = 0;
+	precioAerolineaForzado= 162965;
+	precioLatamForzado = 159339;
+	precioUnitarioAerolineas = 0;
+	precioUnitarioLatam = 0;
 
 	while(opcionMenu != 6){
 		utn_GetInt(&opcionMenu,
@@ -131,13 +142,14 @@ int main(void) {
 				break;
 			case 5:
 				getDiscount(&precioAerolineaForzado, &descuento, &precioDebitoAerolineas);
-				getDiscount(&precioLatamForzado, &descuento, &precioDebitoAerolineas);
-				getPriceWithInteres(&ingresoAerolineas, &descuento, &precioCreditoAerolineas);
-				getPriceWithInteres(&ingresoLatam, &descuento, &precioCreditoLatam);
+				getDiscount(&precioLatamForzado, &descuento, &precioDebitoLatam);
+				getPriceWithInteres(&precioAerolineaForzado, &descuento, &precioCreditoAerolineas);
+				getPriceWithInteres(&precioLatamForzado, &descuento, &precioCreditoLatam);
 				getUnitPrice(&precioAerolineaForzado, &kilometrosForzados, &precioUnitarioAerolineas);
 				getUnitPrice(&precioLatamForzado, &kilometrosForzados, &precioUnitarioLatam);
 				getBitcoinPrice(&precioAerolineaForzado, &bitcoin,&precioConBitCoinAerolineas);
 				getBitcoinPrice(&precioLatamForzado, &bitcoin,&precioConBitCoinLatam);
+				getPriceDifference( &precioAerolineaForzado, &precioLatamForzado, &diferenciaPrecio);
 
 				printf("AEROLINEAS \n");
 								    printf("precio: %.2f\n" ,precioAerolineaForzado);
