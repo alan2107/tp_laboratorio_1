@@ -5,48 +5,46 @@
  *      Author: alan_
  */
 #include <stdio.h>
-/// @brief
-///
-/// @param pNumeroIngresado
-/// @param descuento
-/// @param resultado
-/// @return
-int getFloat(float * pNumeroIngresado, descuento, resultado){
-	float auxDescuento;
-    float auxNumeroIngresado;
+
+void getDiscount(float * pNumeroIngresado,float * descuento, float *resultado){
     float auxResultado;
-    int retorno;
-    auxDescuento = descuento;
-    retorno = -1;
-
-    if(pNumeroIngresado != NULL && descuento > 0 && resultado > 0){
-    	auxResultado = (auxNumeroIngresado * auxDescuento) - auxNumeroIngresado;
-    	* pNumeroIngresado = auxResultado;
-
+    if(pNumeroIngresado != NULL && descuento > 0){
+    	auxResultado = * pNumeroIngresado - (*pNumeroIngresado * *descuento);
+    	* resultado = auxResultado;
     }
 
-    return retorno;
+ return;
 }
-/// @brief
-///
-/// @param pNumeroIngresado
-/// @param interes
-/// @param resultado
-/// @return
-int getFloat(float * pNumeroIngresado, interes, resultado){
 
-    float auxInteres;
-	float auxNumeroIngresado;
+void getPriceWithInteres(float * pNumeroIngresado, float * interes, float * resultado){
     float auxResultado;
-    int retorno;
-    auxInteres = interes;
-
-    retorno = -1;
-
-    if(pNumeroIngresado != NULL && interes > 0 && resultado > 0){
-    	auxResultado = (auxNumeroIngresado * interes) + auxNumeroIngresado;
-    	* pNumeroIngresado = auxResultado;
+    if(pNumeroIngresado != NULL && interes > 0){
+    	auxResultado = (*pNumeroIngresado * *interes) + * pNumeroIngresado ;
+    	* resultado = auxResultado;
     }
+    return;
+}
+void getPriceDifference(float * precioUno, float * precioDos, float * resultado){
+	float auxResultado = 0;
 
-    return retorno;
+	auxResultado = * precioUno - * precioDos;
+	if(auxResultado < 0){
+		auxResultado = auxResultado * -1;
+	}
+	* resultado = auxResultado;
+	return;
+}
+
+void getBitcoinPrice(float * precio, float * precioBitcoin,float * resultado){
+float auxResultado = 0;
+auxResultado = *precio / *precioBitcoin;
+*resultado = auxResultado;
+return;
+}
+
+void getUnitPrice(float * precio, int * kilometros, float * resultado){
+	float auxResultado = 0;
+	auxResultado = *precio / *kilometros;
+	*resultado = auxResultado;
+	return;
 }
