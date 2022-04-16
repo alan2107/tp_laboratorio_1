@@ -33,11 +33,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utnEntrada.h"
+#include "utnCalculos.h"
 
 int main(void) {
 	setbuf(stdout, NULL);
 	int opcionMenu,kilometros, validacionDeRetorno,kilometrosForzados;
-	float tarjetaDeDebito, tarjetaDeCredito, bitcoin,precioDeAerolineas, precioDeLatam, diferenciaDePrecios;
+	float tarjetaDeDebito, tarjetaDeCredito, bitcoin,precioDeAerolineas, precioDeLatam, diferenciaDePrecios,precioUnitario, descuento ,interes;
 	char y , z;
 
 	kilometros = 0;
@@ -45,7 +46,8 @@ int main(void) {
 	precioDeAerolineas= 10000;
 	precioDeLatam = 15000;
 	bitcoin = 4606954.55;
-
+	descuento = 0.1;
+	interes = 0.25;
 
 	do {
 		validacionDeRetorno = utn_GetInt(&opcionMenu,
@@ -63,19 +65,20 @@ int main(void) {
 				validacionDeRetorno = utn_GetInt(&opcionMenu,
 								"1-Ingrese precio de vuelos",
 								"Error, ingrese precio de vuelos correctamente", 3, 1, 2);
+				if(y == precioDeAerolineas){
+									kilometros++;
+									precioDeAerolineas = precioDeAerolineas * kilometros;
+								}else if(z == precioDeLatam){
+									kilometros++;
+									precioDeLatam = precioDeLatam * kilometros;
+								}
 				break;
 			case 3:
-				if(precioDeLatam == tarjetaDeDebito){
-				tarjetaDeDebito = (precioDeLatam * 0.1) - precioDeLatam;
-				}else if(precioDeAerolineas == tarjetaDeDebito){
-					tarjetaDeDebito = (precioDeAerolineas * 0.1) - precioDeAerolineas;
-				}
+				getFloat(&precioDeAerolineas, descuento, tarjetaDeDebito);
+				getFloat(&precioDeLatam, descuento, tarjetaDeDebito);
 
-				if(precioDeLatam == tarjetaDeCredito){
-				tarjetaDeCredito = (precioDeLatam * 0.25) + precioDeLatam;
-				}else if(precioDeAerolineas == tarjetaDeCredito){
-					tarjetaDeCredito = (precioDeAerolineas * 0.25) + precioDeAerolineas;
-				}
+				getFloat(&precioDeAerolineas, interes, tarjetaDeCredito);
+				getFloat(&precioDeLatam, interes, tarjetaDeCredito);
 
 				if(precioDeAerolineas == bitcoin){
 					precioDeAerolineas = precioDeAerolineas * bitcoin;
@@ -94,9 +97,25 @@ int main(void) {
 					diferenciaDePrecios = precioDeAerolineas - precioDeLatam;
 				}
 
+				precioUnitario = precioDeAerolineas;
+				precioUnitario = precioDeLatam;
+
 				break;
 			case 4:
-				printf("informar resultados");
+				    printf("precio de Aerolineas : %f" ,precioDeAerolineas);
+										printf("precio con tarjeta de debito : %f" ,tarjetaDeDebito);
+										printf("precio con tarjeta de debito : %f" ,tarjetaDeCredito);
+										printf("precio pagando con Bitcoin : %f" ,bitcoin);
+										printf("Precio Unitario : %f" ,precioUnitario);
+
+					printf("precio de Aerolineas : %f" ,precioDeLatam);
+										printf("precio con tarjeta de debito : %f" ,tarjetaDeDebito);
+										printf("precio con tarjeta de debito : %f" ,tarjetaDeCredito);
+										printf("precio pagando con Bitcoin : %f" ,bitcoin);
+										printf("Precio Unitario : %f" ,precioUnitario);
+
+					printf("la diferencia de precio es: %f", diferenciaDePrecios);
+
 
 				break;
 			case 5:
