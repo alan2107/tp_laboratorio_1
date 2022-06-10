@@ -39,8 +39,7 @@
 int main(void) {
 	setbuf(stdout, NULL);
 	int opcionMenu, kilometros,kilometrosForzados,maximoNumeroDeReintento,flagCalculos;
-	float bitcoin,precioDeAerolineas, precioDeLatam,precioUnitario, descuento ,
-	interes,ingresoAerolineas,ingresoLatam,precioDebitoAerolineas,precioDebitoLatam,precioCreditoAerolineas
+	float bitcoin, descuento,ingresoAerolineas,ingresoLatam,precioDebitoAerolineas,precioDebitoLatam,precioCreditoAerolineas
 	,precioCreditoLatam,precioConBitCoinAerolineas,precioConBitCoinLatam, diferenciaPrecio,
 	precioAerolineaForzado,precioLatamForzado,precioUnitarioAerolineas,precioUnitarioLatam;
 
@@ -51,11 +50,7 @@ int main(void) {
 	flagCalculos = 0;
 
 	bitcoin = 4606954.55;
-	precioDeAerolineas= 0;
-	precioDeLatam = 0;
-	precioUnitario = 0;
 	descuento = 0.1;
-	interes = 0.25;
 	ingresoAerolineas = 0;
 	ingresoLatam = 0;
 	precioDebitoAerolineas = 0;
