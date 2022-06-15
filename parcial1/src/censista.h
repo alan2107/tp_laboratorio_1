@@ -15,8 +15,8 @@
 
 struct {
 	int idCensista;
-	char nombre[51];
-	char apellido[51];
+	char nombre[25];
+	char apellido[25];
 	Fecha nacimiento;
 	int edad;
 	Direccion domicilio;
